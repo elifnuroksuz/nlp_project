@@ -1,140 +1,136 @@
-# nlp_project
-NLTK, spaCy ve Scikit-learn kullanılarak metin temizleme, tokenizasyon, vektörleştirme ve basit metin sınıflandırma modelleri uygulanmıştır.
+NLP Metin Sınıflandırma Projesi 🎬
+Bu proje, IMDB film yorumları üzerinde duygu analizi (sentiment analysis) yaparak yorumları olumlu ve olumsuz olarak sınıflandıran kapsamlı bir doğal dil işleme (NLP) çalışmasıdır.
+📋 Proje Özeti
+NLTK, spaCy ve Scikit-learn kütüphaneleri kullanılarak:
 
-ADIM 1 -> 01_Kurulum_ve_veri_hazırlığı:
-Amaç: Veri setini anlamak, sınıfların dengesini kontrol etmek, metin uzunluklarını analiz etmek ve eksik verileri tespit ederek veri ön işleme için temel bir anlayış oluşturmak. Grafikler, verinin yapısını görselleştirerek daha iyi anlamayı sağladı.
+Metin temizleme ve preprocessing işlemleri
+Tokenizasyon ve lemmatizasyon teknikleri
+Bag of Words (BoW) ve TF-IDF vektörizasyon yöntemleri
+5 farklı makine öğrenmesi algoritması ile model eğitimi
+Hiperparametre optimizasyonu ve çapraz doğrulama
+Performans karşılaştırması ve model seçimi
 
-Kullanılan Kütüphanler:
-pandas (pd): Veri analizi ve manipülasyonu için; tablo verileriyle çalışır, filtreleme, gruplama yapar.
-numpy (np): Sayısal hesaplamalar için; dizi/matris işlemleri ve matematiksel fonksiyonlar sağlar.
-matplotlib.pyplot (plt): Veri görselleştirme için; grafikler (çizgi, çubuk, vb.) oluşturur.
-seaborn (sns): Gelişmiş veri görselleştirme; daha estetik ve kolay grafikler çizer.
-re: Düzenli ifadeler için; metin arama, eşleştirme ve düzenleme yapar.
+🎯 Ana Hedefler
 
-df.shape: Veri setinin boyutunu (satır ve sütun sayısı) verir.
-df.info(): Sütunların veri tipleri, eksik değerler ve bellek kullanımı hakkında özet bilgi sunar.
-df.columns.tolist(): Veri setindeki sütun isimlerini liste olarak döndürür.
+Film yorumlarını otomatik olarak olumlu/olumsuz sınıflandırmak
+Farklı vektörizasyon yöntemlerinin performansını karşılaştırmak
+En iyi makine öğrenmesi algoritmasını belirlemek
+Metin madenciliği sürecinin tüm aşamalarını uygulamak
 
-ADIM 2-> 02_metin_temizleme:
-Amaç: Metin verilerini (yorumları) analiz için uygun hale getirmek; HTML etiketleri, noktalama işaretleri, sayılar ve fazla boşlukları temizleyerek metni sadeleştirmek ve standartlaştırmak. Görselleştirmeler, temizlemenin etkisini anlamaya yardımcı oldu. Temizlenmiş veri, sonraki adımlar (ör. makine öğrenmesi) için hazırlandı.
+🏆 Başarılan Sonuçlar
+En İyi Model Performansı:
 
-BeautifulSoup: web sitelerinden veri çekmek (web scraping) için kullanılır, HTML ve XML dökümanlarını parçalayıp içindeki verileri kolayca almamızı sağlar.
+Algoritma: Lojistik Regresyon + TF-IDF
+F1-Score: 0.8812 (88.12%)
+Accuracy: 89.57%
+Veri Seti: 50,000 IMDB film yorumu
 
-Metin Temizleme ve Normalizasyon:
-HTML Etiketlerini Temizleme: BeautifulSoup ile yorumlardaki HTML etiketleri (<br /> gibi) kaldırıldı, review_no_html sütunu oluşturuldu.
-Noktalama İşaretlerini Temizleme: re.sub ile noktalama işaretleri boşlukla değiştirildi, review_no_punct sütunu oluşturuldu.
-Sayıları Temizleme: Sayılar kaldırıldı, review_no_numbers sütunu oluşturuldu.
-Küçük Harfe Çevirme: Tüm metin küçük harfe çevrildi, review_lower sütunu oluşturuldu.
-Fazla Boşlukları Temizleme: Fazla boşluklar kaldırılıp metin düzgünleştirildi, review_clean sütunu oluşturuldu.
+Vektörizasyon Karşılaştırması:
 
-ADIM 3-> 03_tokenization_lemmatization
-Amaç: Metin verilerini tokenizasyon, durdurma kelimelerini kaldırma, lemmatizasyon ve stemming işlemleriyle işleyerek makine öğrenmesi modelleri için uygun hale getirmek, sık kullanılan kelimeleri görselleştirmek ve işlenmiş veriyi kaydetmek.
+TF-IDF: F1-Score 0.8812 ⭐
+Bag of Words: F1-Score 0.5100
 
-Kullanılan Kütüphanler:
-pandas, numpy: Veri işleme.
-nltk, spacy: Tokenizasyon, durdurma kelimeleri, lemmatizasyon.
-sklearn: Vektörizasyon ve sınıflandırma.
-matplotlib, seaborn: Görselleştirme.
+🔧 Kullanılan Teknolojiler
+Kütüphaneler:
 
-1. Tokenizasyon (Tokenization): Metni daha küçük parçalara (tokenlara) ayırma işlemidir.
-Amaç: Metni analiz edilebilir birimler haline getirmek, böylece kelime veya cümle bazında işleme mümkün olur.
-Örnek:
-Giriş: "I love watching movies!"
-Çıkış (kelime tokenları): ["I", "love", "watching", "movies", "!"]
+NLTK: Tokenizasyon, stemming, stop words
+spaCy: Lemmatizasyon, POS tagging
+Scikit-learn: Vektörizasyon, ML algoritmaları, metrikler
+Pandas: Veri manipülasyonu
+NumPy: Sayısal hesaplamalar
+Matplotlib & Seaborn: Görselleştirme
+BeautifulSoup: HTML temizleme
 
-2. Lemmatizasyon (Lemmatization): Kelimeleri dilbilgisi açısından kök (lemma) formuna indirgeme işlemidir. Kelimenin anlamını ve dilbilgisi bağlamını koruyarak, farklı çekimlerini (ör. çoğul, fiil zamanları) temel haline getirir.
-Amaç: Aynı anlama gelen farklı kelime formlarını (ör. "running", "ran" → "run") birleştirerek analizde tutarlılık sağlamak.
-Örnek:
-Giriş: "running", "ran", "runs"
-Çıkış: "run"
+Makine Öğrenmesi Algoritmaları:
 
-3. Stemming: Kelimeleri köklerine indirgeme işlemidir, ancak lemmatizasyondan farklı olarak dilbilgisi bağlamını dikkate almaz; sadece ekleri keser (daha kaba bir yöntem).
-Amaç: Kelime varyasyonlarını azaltmak, ancak bazen anlamsız kökler üretir (ör. "better" → "bet").
-Örnek:
-Giriş: "running", "runner"
-Çıkış: "run"
+Lojistik Regresyon (En İyi: F1=0.8812)
+Random Forest (F1=0.8427)
+Naive Bayes (F1=0.8543)
+Karar Ağacı (F1=0.7323)
+KNN (F1=0.5550)
 
-NLTK: Python tabanlı, doğal dil işleme (NLP) için açık kaynaklı bir kütüphanedir.
-Esnek, hafif, akademik ve öğrenme amaçlı projeler için ideal. Ancak manuel ayar (ör. POS etiketleme) gerektirebilir ve bazı işlemlerde daha az doğruluk sunar.
+📁 Proje Yapısı
+nlp-metin-siniflandirma/
+├── 01_Kurulum_ve_veri_hazırlığı.ipynb
+├── 02_metin_temizleme.ipynb
+├── 03_tokenization_lemmatization.ipynb
+├── 04_BagofWordsveTF-IDFvektörizasyonu.ipynb
+├── 05_metin_sınıflandırma_modeli_train_test.ipynb
+├── 06_metin_sınıflandırma_modeli_cross_validaton.ipynb
+├── README.md
+└── models/ (kaydedilen modeller)
+🚀 Proje Adımları
+ADIM 1: Kurulum ve Veri Hazırlığı
 
-spaCy:Modern, endüstri odaklı bir NLP kütüphanesidir.
-Hızlı, bağlam duyarlı, büyük dil modelleriyle çalışır, ancak daha fazla bellek kullanır. Stemming yerine lemmatizasyona odaklanır.
+Veri setini anlama ve keşifsel analiz
+Sınıf dengesi kontrolü
+Metin uzunlukları analizi
+Eksik veri tespiti
+Görselleştirmeler
 
+ADIM 2: Metin Temizleme
 
-ADIM 4 -> 04_BagofWordsveTF-IDFvektörizasyonu
-Amaç:Metin verilerini (yorumları) sayısal vektörlere çevirerek makine öğrenmesi modelleri (ör. duygu analizi) için hazır hale getirmek, kelime önemlerini görselleştirmek ve bellek dostu bir formatta (sparse) kaydetmek.
+HTML etiketlerini temizleme (BeautifulSoup)
+Noktalama işaretlerini kaldırma
+Sayıları temizleme
+Küçük harfe çevirme
+Fazla boşlukları düzenleme
 
-BoW (Bag of Words): Metni, her kelimenin dokümandaki sıklığına (frekansına) dayalı olarak temsil eden basit bir vektörleştirme yöntemidir. Her doküman, kelime dağarcığındaki tüm kelimeler için bir vektörle ifade edilir; kelime varsa sıklığı yazılır, yoksa sıfır konur.
-Örnek:
-Doküman: "I love movies"
-Kelime dağarcığı: [I, love, movies, hate]
-BoW vektörü: [1, 1, 1, 0] (her kelimenin sıklığı).
-(+) Avantajlar: Basit, hızlı, anlaşılır.
-(-) Dezavantajlar: Kelime bağlamını/önemini dikkate almaz, sık kullanılan anlamsız kelimeler (ör. "the") ağırlık kazanabilir, vektörler büyük ve seyrek (sparse) olur.
+ADIM 3: Tokenizasyon ve Lemmatizasyon
 
-TF-IDF (Term Frequency-Inverse Document Frequency):Kelimelerin önemini hem dokümandaki sıklığına (TF) hem de tüm dokümanlar arasında ne kadar nadir olduğuna (IDF) göre ölçen bir vektörleştirme yöntemidir. Nadir kelimeler daha yüksek ağırlık alır.
-TF (Terim Frekansı): Bir kelimenin bir dokümanda kaç kez geçtiği (sıklık).
-IDF (Ters Doküman Frekansı): Kelimenin tüm dokümanlarda ne kadar nadir olduğunu ölçer (nadir kelimeler daha önemlidir).
-Örnek:
-"movie" sık geçer, düşük IDF (düşük önem).
-"masterpiece" az geçer, yüksek IDF (yüksek önem).
-Doküman: "This movie is a masterpiece" → "masterpiece" daha yüksek TF-IDF skoru alır.
-(+) Avantajlar: Anlamsız sık kelimelerin (ör. "the") etkisini azaltır, önemli kelimeleri öne çıkarır.
-(-) Dezavantajlar: Hala kelime sırası/bağlamı dikkate almaz, hesaplama BoW’a göre daha karmaşıktır.
+Metin tokenizasyonu (NLTK & spaCy)
+Stop words (durdurma kelimeleri) kaldırma
+Lemmatizasyon (kök forme indirgeme)
+Stemming işlemleri
+Sık kullanılan kelimelerin görselleştirilmesi
 
-ADIM 5-> 05_metin_sınıflandırma_modeli_train_test
-AmaçIMDB veri setindeki film yorumlarını (olumlu/olumsuz) sınıflandırmak için BoW (Bag of Words) ve TF-IDF vektörleriyle iki farklı makine öğrenmesi modeli (Naive Bayes ve Lojistik Regresyon) eğitmek, performanslarını karşılaştırmak, en iyi modeli seçmek ve gelecekteki kullanımlar için kaydetmek. Ayrıca, model performanslarını görselleştirerek analiz etmek ve sonuçları düzenli bir şekilde kaydetmek.
+ADIM 4: Vektörizasyon
 
-Veriyi Eğitim ve Test Setlerine Ayırma:
-İşlem: BoW ve TF-IDF vektörleri, %80 eğitim (40,000 örnek) ve %20 test (10,000 örnek) olacak şekilde ayrıldı (train_test_split, random_state=42, stratify=y ile dengeli bölme).
-Detaylar: Sınıf dengesi korundu (eğitim: 20,000 olumlu/olumsuz; test: 5,000 olumlu/olumsuz).
+Bag of Words (BoW) implementasyonu
+TF-IDF vektörizasyonu
+Sparse matrix formatında kaydetme
+Kelime önem skorlarının analizi
 
-Modelleri Eğitme:
-İşlem: Dört model eğitildi:
-Naive Bayes (BoW)
-Lojistik Regresyon (BoW)
-Naive Bayes (TF-IDF)
-Lojistik Regresyon (TF-IDF)
+ADIM 5: Model Eğitimi ve Test
 
-Performans Metrikleri:
-Doğruluk (Accuracy): Doğru tahminlerin oranı (ör. 0.8957).
-Hassasiyet (Precision): Pozitif tahminlerin ne kadarının doğru olduğu.
-Geri Çağırma (Recall): Gerçek pozitiflerin ne kadarının doğru tahmin edildiği.
-F1 Skoru: Precision ve recall’un harmonik ortalaması; dengeli bir performans ölçüsü.
-Karışıklık Matrisi (Confusion Matrix): Gerçek ve tahmin edilen sınıfların karşılaştırması (ör. Negatif/Pozitif).
+Train/test split (%80-%20)
+4 farklı model kombinasyonu eğitimi
+Performans metrikleri hesaplama
+Confusion matrix analizi
+En iyi model seçimi
 
-Modelleri Değerlendirme:
-İşlem: Her modelin performansı, doğruluk (accuracy), hassasiyet (precision), geri çağırma (recall) ve F1 skoru ile değerlendirildi (classification_report).
-Detaylar:
-Naive Bayes (BoW): Accuracy 0.8577, F1 0.8577
-Lojistik Regresyon (BoW): Accuracy 0.8851, F1 0.8851
-Naive Bayes (TF-IDF): Accuracy 0.8605, F1 0.8605
-Lojistik Regresyon (TF-IDF): Accuracy 0.8957, F1 0.8957
-TF-IDF modelleri, BoW’a göre daha iyi performans gösterdi; Lojistik Regresyon, Naive Bayes’ten daha başarılı.
+ADIM 6: Çapraz Doğrulama ve Optimizasyon
 
+10-kat çapraz doğrulama
+Hiperparametre optimizasyonu
+5 algoritma ile kapsamlı karşılaştırma
+Performans görselleştirmeleri
+Final model kaydetme
 
-ADIM 6-> 06_metin_sınıflandırma_modeli_cross_validaton 
-Amaç: IMDB veri seti kullanılarak film yorumları üzerinde duygu analizi (olumlu/olumsuz) yapıldı. Metinler TF-IDF ve Bag of Words (BoW) yöntemleriyle vektörleştirildi, 20.000 örnekten oluşan bir veri seti ile beş makine öğrenmesi modeli (KNN, Naive Bayes, Karar Ağacı, Lojistik Regresyon, Random Forest) eğitildi. Hiperparametre optimizasyonu ve 10-kat çapraz doğrulama ile modellerin performansı değerlendirildi. Lojistik Regresyon, TF-IDF ile en iyi performansı (F1-score: 0.8812) gösterdi. Sonuçlar görselleştirildi, modeller ve vektörler kaydedildi. TF-IDF, BoW'dan (F1: 0.5100) daha iyi sonuç verdi, bu nedenle duygu analizi için önerildi.
+📊 Performans Metrikleri
+Projede kullanılan değerlendirme metrikleri:
 
-Makine Öğrenmesi Algoritmaları
-KNN (K-En Yakın Komşu): Yeni bir örneği, en yakın komşularına bakarak sınıflandırır. Ancak metin verilerinde genellikle düşük performans gösterir (F1: 0.5550).
-Naive Bayes: Olasılıksal bir modeldir ve metin sınıflandırmada (özellikle BoW ile) etkilidir. TF-IDF ile iyi performans gösteriyor (F1: 0.8543).
-Karar Ağacı: Veriyi dallara ayırarak kararlar alır. Orta düzey performans (F1: 0.7323).
-Lojistik Regresyon: İkili sınıflandırma için optimize edilmiş, doğrusal bir model. En iyi performansı gösteriyor (F1: 0.8812).
-Random Forest: Birden fazla karar ağacının birleşimi. İyi performans gösteriyor (F1: 0.8427) ancak Lojistik Regresyon'un gerisinde.
+Accuracy: Doğru tahmin oranı
+Precision: Pozitif tahminlerin doğruluk oranı
+Recall: Gerçek pozitiflerin yakalanma oranı
+F1-Score: Precision ve recall'un harmonik ortalaması
+MCC: Matthews Correlation Coefficient
+Confusion Matrix: Sınıflandırma detay analizi
 
-Hiperparametre Optimizasyonu: Bir makine öğrenmesi modelinin performansını artırmak için en iyi parametre kombinasyonlarını bulma işlemi.
+🎯 Önemli Bulgular
 
-Çapraz Doğrulama (Cross-Validation): Modelin genelleme yeteneğini değerlendirmek için veri setini birden fazla alt kümeye bölerek test etme yöntemi.
+TF-IDF >> Bag of Words: TF-IDF vektörizasyonu, BoW'dan önemli ölçüde daha iyi performans gösterdi
+Lojistik Regresyon: En kararlı ve yüksek performanslı algoritma
+Metin Temizleme: Preprocessing adımları model performansını önemli ölçüde artırdı
+Çapraz Doğrulama: Modelin genelleme yeteneğini doğruladı
 
-Performans Metrikleri
-Tanım: Modelin başarısını ölçmek için kullanılan ölçütler.
-Koddaki Yeri:
-Doğruluk (Accuracy): Doğru tahminlerin oranı.
-Kesinlik (Precision): Pozitif tahminlerin ne kadarının doğru olduğu.
-Duyarlılık (Recall): Gerçek pozitiflerin ne kadarının doğru tahmin edildiği.
-Özgüllük (Specificity): Gerçek negatiflerin ne kadarının doğru tahmin edildiği.
-F1-Score: Kesinlik ve duyarlılığın harmonik ortalaması (dengeli bir metrik).
-MCC (Matthews Correlation Coefficient): Sınıflandırma performansını dengesiz veri setlerinde bile iyi ölçen bir metrik.
+🔮 Gelecek Geliştirmeler
 
-Karışıklık Matrisi (Confusion Matrix):  Modelin tahminlerini gerçek sınıflarla karşılaştıran bir tablo (True Positives, False Positives, vb.).
+Deep Learning modelleri (LSTM, BERT)
+Ensemble yöntemleri
+Çok sınıflı duygu analizi
+Gerçek zamanlı tahmin API'si
+Web arayüzü geliştirme
+
+📈 Sonuç
+Bu proje, klasik NLP tekniklerinin film yorumu duygu analizi probleminde nasıl etkili bir şekilde kullanılabileceğini göstermiştir. %89.57 doğruluk oranıyla pratik kullanıma hazır bir model geliştirilmiştir.
